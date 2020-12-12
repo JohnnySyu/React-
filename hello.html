@@ -15,9 +15,21 @@
             return React.createElement("H"+this.props.level,null,"Hello Component");
         }
     }
+
+    class MyHeadList extends React.Component{
+        render(){
+            let heads=[]
+            let head;
+            for(let i=0;i<6;i++){
+                head=React.createElement(MyHead,{level:i});
+                heads.push(head);
+            }
+            return React.createElement("DIV",null,heads);
+        }
+    }
     window.addEventListener("load",()=>{
         //類似實體化物件。自訂React組件實體.給定屬性(類似key:valu)
-        let myComponent = React.createElement(MyHead,{level:3});
+        let myComponent = React.createElement(MyHeadList,null);
         //將建立好的React組件放入容器中
         ReactDOM.render(myComponent,document.body);
     });
