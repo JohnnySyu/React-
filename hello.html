@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+</head>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script>
+    //設計組件類別(類似class)
+    class MyHead extends React.Component{
+        render(){
+            return React.createElement("H1",null,"Hello Component");
+        }
+    }
+    window.addEventListener("load",()=>{
+        //類似實體化物件
+        let myComponent = React.createElement(MyHead,null);
+        //將建立好的React組件放入容器中
+        ReactDOM.render(myComponent,document.body);
+    });
+</script>
+<body>
+    
+</body>
+</html>
