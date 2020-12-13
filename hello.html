@@ -8,8 +8,8 @@
 <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 <script>
-    //設計組件類別(類似class)
-    class MyHead extends React.Component{
+       //設計組件類別(類似class)
+       class MyHead extends React.Component{
         render(){
             console.log(this.props.level);
             return React.createElement("H"+this.props.level,null,"Hello Component");
@@ -19,11 +19,23 @@
     class MyHeadList extends React.Component{
         constructor(props){
             super(props);
-            this.state={maxLevel:3};
-            window.setTimeout(()=>{
-                // this.setState({maxLevel:6})
-                this.setState((currentState,currentProps)=>({maxLevel:currentState.maxLevel+1}))
-            },2000)
+            this.state={maxLevel:props.start};         
+        }
+
+        componentWillMount(){
+            this.intervalID=window.setInterval(()=>{
+                this.setState((currentState,currentProps)=>{
+                    if(currentState.maxLevel>currentProps.end){
+                        return currentState
+                    }else{
+                        return {maxLevel:currentState.maxLevel+1};
+                    }             
+                })
+            },1000)
+        }
+
+        componentWillUnmount(){
+            window.clearInterval(this.intervalID)
         }
         render(){
             let heads=[]
@@ -37,7 +49,7 @@
     }
     window.addEventListener("load",()=>{
         //類似實體化物件。自訂React組件實體.給定屬性(類似key:valu)
-        let myComponent = React.createElement(MyHeadList,null);
+        let myComponent = React.createElement(MyHeadList,{start:3,end:5});
         //將建立好的React組件放入容器中
         ReactDOM.render(myComponent,document.body);
     });
