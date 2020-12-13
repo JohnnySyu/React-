@@ -17,10 +17,18 @@
     }
 
     class MyHeadList extends React.Component{
+        constructor(props){
+            super(props);
+            this.state={maxLevel:3};
+            window.setTimeout(()=>{
+                // this.setState({maxLevel:6})
+                this.setState((currentState,currentProps)=>({maxLevel:currentState.maxLevel+1}))
+            },2000)
+        }
         render(){
             let heads=[]
             let head;
-            for(let i=0;i<6;i++){
+            for(let i=1;i<this.state.maxLevel;i++){
                 head=React.createElement(MyHead,{level:i});
                 heads.push(head);
             }
