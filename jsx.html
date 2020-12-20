@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX</title>
+</head>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+    .head{font-size: 20px; color: aqua;}
+</style>
+<script type="text/babel">
+   class MyHead extends React.Component{
+        render(){         
+            return <div className="head" style={{color:this.props.color}}>Hello World {this.props.level}</div>
+        }
+    }
+
+    class MyHeadList extends React.Component{
+        render(){
+            return <div>
+                <MyHead level="1" color="red"/>
+                <MyHead level="2" color="green"/>
+                <MyHead level="3" color="blue"/>
+            </div>
+        }
+    }
+
+    window.addEventListener("load",()=>{
+       
+        let elem=<MyHeadList/>
+        
+        ReactDOM.render(elem,document.body);
+    });
+</script>
+<body>
+    
+</body>
+</html>

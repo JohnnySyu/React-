@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+    .head{font-size: 20px; color: aqua;}
+</style>
+<script type="text/babel">
+    class MyHead extends React.Component{
+        constructor(props){
+            super(props);
+            this.state={color:"red"}
+        }
+        render(){
+            return <div className={"head-"+this.props.level}
+            style={{color:this.state.color}}
+            onClick={this.clickHandler.bind(this)}>Hello Component</div>
+        }
+
+        clickHandler(e){
+            this.setState({color:"blue"})
+        }
+    }
+
+    window.addEventListener("load",()=>{
+        ReactDOM.render(<MyHead level="3"/>,document.body);
+    });
+</script>
+<body>
+    
+</body>
+</html>
