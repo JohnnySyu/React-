@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/redux@4.0.5/dist/redux.min.js"></script>
+<script>
+    let store;
+    let reducer=function(state,action){
+        switch(action.type){
+            case "UPDATE_SWITCH":
+                return {on:!state.on};
+            default:
+                return state;
+        }
+    }
+
+    let handler=function(){
+        let state=store.getState();
+        document.body.innerHTML=state.on?"on":"off";
+    }
+    window.addEventListener("load",()=>{
+        store=Redux.createStore(reducer,{on:false})
+        // let unsubscribe=store.subscribe(handler)
+        store.subscribe(handler)
+        document.addEventListener("click",()=>{
+            store.dispatch({
+                type:"UPDATE_SWITCH"
+            })
+        })
+        
+        console.log(store.getState())
+    })
+</script>
+</head>
+
+<body>
+    
+</body>
+</html>
